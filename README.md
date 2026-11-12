@@ -2,7 +2,7 @@
 
 A quieter home screen for Samsung Tizen TVs: your apps, a photograph, the time and date, with an interface made for the remote. This is a community fork of [nthnclrk/CleanFrame](https://github.com/nthnclrk/CleanFrame), adapted for **non‑Frame** Samsung TVs and extended with a slideshow manager, a card‑grid app editor, and a long‑press app menu.
 
-![CleanFrame dock preview using the bundled Manrope font](docs/images/cleanframe-dock.jpg)
+![CleanFrame on a non-Frame Samsung TV: night-skyline wallpaper, 24-hour clock with date, and the glass app dock (browser preview of the actual UI)](docs/images/cleanframe-dock.jpg)
 
 I run this on a 2024 Crystal UHD (`UN75DU7200FXZA`, Tizen 9). The original was built for a Samsung The Frame; all credit for the launcher goes to the upstream author. I'm sharing this variant as a starting point for other non‑Frame TVs, not as a finished product.
 
