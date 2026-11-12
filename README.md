@@ -1,35 +1,28 @@
-# CleanFrame
+# CleanFrame for any Samsung TV
 
-A quieter home screen for Samsung The Frame. Your apps, a photograph and the time, with an interface made for the TV remote.
+A quieter home screen for Samsung Tizen TVs: your apps, a photograph, the time and date, with an interface made for the remote. This is a community fork of [nthnclrk/CleanFrame](https://github.com/nthnclrk/CleanFrame), adapted for **non‑Frame** Samsung TVs and extended with a slideshow manager, a card‑grid app editor, and a long‑press app menu.
 
-![CleanFrame browser preview using the bundled Manrope font](docs/images/cleanframe-dock.jpg)
+![CleanFrame dock preview using the bundled Manrope font](docs/images/cleanframe-dock.jpg)
 
-> ## This fork — CleanFrame for any Samsung TV
->
-> This is a community fork of [**nthnclrk/CleanFrame**](https://github.com/nthnclrk/CleanFrame) (MIT), adapted and extended for **non‑Frame Samsung Tizen TVs** (tested on a 2024 Crystal UHD, `UN75DU7200FXZA`, Tizen 9). All credit for the original launcher goes to the upstream author; this fork keeps the MIT license.
->
-> **What this fork adds**
-> - **Slideshow manager** — create named slideshows, pick wallpapers as cards, set a custom transition speed, play/stop from the Wallpaper menu.
-> - **Apps on Home** redesigned as a **card grid**; reorder with a direct lift‑and‑move.
-> - **Long‑press any app** for a menu: Open, Move (in‑place reorder on Home or in All apps), Add/Remove from Home, Hide/Unhide, App info, and an Uninstall helper. **Press Down** from the Home row to open All apps.
-> - **Hidden apps** list in Settings; **custom All‑apps ordering**.
-> - Colorful native app icons everywhere, auto‑**blended to monochrome only on the Home row**.
-> - Clock restyle: white, repositioned, **24‑hour**, with seconds and the **date** beneath.
-> - Apple‑TV‑style focus on the All‑apps grid; reduced glass blur.
->
-> **Wallpapers.** This repo ships the upstream photos plus a few extra city/wildlife photos from Wikimedia Commons (credited in [`app/assets/wallpapers/ADDED-CREDITS.md`](app/assets/wallpapers/ADDED-CREDITS.md)). To add **your own** wallpapers without committing them, drop images in and register them in a git‑ignored `app/assets/wallpapers/catalog.local.js` (loaded automatically).
->
-> **Non‑Frame note.** Installing the launcher works broadly (Tizen 5.0+). Art Mode features are Frame‑only. The optional native‑Home takeover uses undocumented, model/firmware‑specific settings — it needs its own adaptation and a saved recovery baseline per TV; proceed only with the setup guide.
+I run this on a 2024 Crystal UHD (`UN75DU7200FXZA`, Tizen 9). The original was built for a Samsung The Frame; all credit for the launcher goes to the upstream author. I'm sharing this variant as a starting point for other non‑Frame TVs, not as a finished product.
 
-I built CleanFrame for one TV: my own Samsung The Frame, running Tizen. I'm sharing the code and setup notes as a starting point for other people to build on.
+**Use it at your own risk.** Installing the launcher works broadly (Tizen 5.0+), but no device flow is guaranteed on every model. Art Mode features are Frame‑only. The optional native‑Home change uses undocumented, model‑ and firmware‑specific settings and can fail after updates — adapt it and keep a recovery baseline per TV.
 
-**Use it at your own risk.** The web launcher targets Tizen 5.0 and later for installation, with [owner reports](docs/compatibility.md) across several models. That minimum is not a promise that every device flow is verified. The TV setup scripts and native Home helpers still reflect specific computers and firmware, so adapt them and test on your own hardware.
+## What this fork adds
 
-I highly recommend forking it and building on top of it, ideally with a coding agent that can help you understand and adapt the setup. Start with the browser preview, make the interface your own, then work through TV installation when you're ready. Native Home/startup changes need particular care; the setup guide covers the risks and recovery steps.
+- **Slideshow manager** — create named slideshows, pick wallpapers as selectable cards, set a custom transition speed, and play/stop from the Wallpaper menu.
+- **Apps on Home** redesigned as a **card grid** (was a text list), with a direct lift‑and‑move reorder.
+- **Long‑press any app** (hold OK) for a menu: Open, **Move** (in‑place — shuffle along the Home row, or rearrange the All‑apps grid), Add/Remove from Home, **Hide/Unhide**, **App info**, and an **Uninstall** helper.
+- **Press Down** from the Home row to open **All apps** (Apple‑TV‑style focus grid).
+- **Hidden‑apps** review list in Settings; **custom All‑apps ordering** that persists.
+- Native app icons shown everywhere, **auto‑blended to monochrome only on the Home row** so the home screen stays consistent while browsing shows real icons.
+- **Clock**: white, repositioned, **24‑hour**, with seconds and the **date** beneath. Reduced glass blur behind Home apps.
+
+See [CHANGES.md](CHANGES.md) for the full list.
 
 ## Try the interface
 
-You need Node.js 22.13+ (22 LTS), or 24+, and Python 3.10+ to run the browser preview.
+You need Node.js 22.13+ (or 24+) and Python 3.10+ for the browser preview — no TV required.
 
 ```sh
 git clone https://github.com/MrMerlin1/CleanFrame.git
@@ -38,87 +31,56 @@ npm ci
 npm run dev:public
 ```
 
-Open [localhost:4795/home/](http://localhost:4795/home/). Use the arrow keys, Enter and Escape, or click the controls. App launches and Samsung screens require a TV; the preview reports that limitation when you select them.
+Open [localhost:4795/home/](http://localhost:4795/home/). Use the arrow keys, Enter and Escape, or click. **Hold Enter** on an app for the long‑press menu. App launches and Samsung‑only screens need a real TV; the preview says so when you select them.
 
-The public preview uses the included Manrope, Geist and Newsreader fonts.
+## Using the launcher
 
-## What you can change
+| Area | What it does |
+| --- | --- |
+| Remote | Arrows navigate; OK selects; Back goes up a level. **Hold OK** on an app for its menu. **Down** from the Home row opens All apps. |
+| Wallpaper | Pick a background and open **Slideshows** to build/play a named slideshow at a custom speed. |
+| Apps on Home | A card grid; long‑press → Move to reorder in place, or Add/Remove from Home. |
+| All apps | Every installed app; long‑press → Move to set a custom order, Hide to declutter. |
+| Settings | Background, layout, typography, focus/glass material, **Hidden apps**, and Samsung Home/TV settings and HDMI inputs. |
 
-- Choose a List or Dock layout, with icons, names or both.
-- Use a photograph, light or dark background, with a simple 12-hour clock.
-- Adjust typography, focus and glass materials through the same Settings interface.
-- Choose and reorder Home apps; discover installed apps on the TV.
-- Select from fifteen wallpapers and save your preferences locally.
-- Open Settings → Samsung → Inputs to choose a discovered HDMI source.
-
-The glass and blur are rendered ahead of time. The TV loads the finished images and uses transforms and opacity for focus feedback.
-
-## Use a coding agent
-
-Open this repo in a local coding agent and give it a bounded change:
-
-```text
-Read AGENTS.md, docs/development.md and docs/interaction-behaviour.md.
-Help me adapt CleanFrame. Start with the public-font browser preview.
-My first change is: <describe one change>.
-Preserve remote navigation, saved preferences and the ES5 runtime.
-Run the source checks and relevant browser checks. Show the result.
-This task is browser-only: do not connect to a TV, sign or install a
-package, or change Home/startup settings.
-```
-
-See [working with an agent](docs/for-agents.md) for the TV setup prompt and the distinction between UI work, app installation and native Home changes. An agent needs local computer access for TV work; a hosted chat cannot reach your TV merely by reading this repo.
+Your preferences, slideshows, custom order and hidden/blended choices are saved on the TV.
 
 ## Put it on a TV
 
-Use the staged [Samsung The Frame setup guide](docs/agent-tv-setup-guide.md) to understand the process used on my TV and adapt it to yours. It covers the remote's Developer Mode sequence, official Samsung tools, your own certificates and app identity, installation, visible checks and recovery.
-
-The [latest release](https://github.com/nthnclrk/CleanFrame/releases/latest) includes an unsigned, public-font widget for inspection and adaptation. For your installation, build from source using your own identity in `.local/signing.json` and sign with your own certificates. The download is not a ready-to-install signed package.
-
-Signing supports an ignored `.local/signing.json` based on `signing.example.json`: select your SDK, existing certificate profile and your own SDK-generated app identity. See [local signing setup](docs/development.md#local-tv-tools-and-signing). The TV installation commands and native Home helper still contain reference-machine assumptions. Your agent must check the installed-app IDs and each device stage with you. Installing the app and assigning the remote Home button are separate steps.
+Follow the staged [setup guide](docs/agent-tv-setup-guide.md): Developer Mode on the remote, official Samsung tools, **your own** certificate and app identity in `.local/signing.json` (based on `signing.example.json`), build, sign, install, then the optional Home‑button change with a saved recovery baseline. Installing the app and assigning the Home button are separate steps, and **nothing in this repo contains signing keys or device IDs** — you supply your own.
 
 | Area | Evidence and limits |
 | --- | --- |
-| Reference hardware | Samsung QA55LS03DAWXXY / LS03D, firmware 2130.0, Tizen 9.0, 32-bit ARM |
-| App installation | Signed installation and launch commands succeeded through 0.6.1. Latest rendering and remote feel still need physical observation. |
-| App launch and Home | Netflix/YouTube launch and physical Home from Netflix were confirmed on the reference setup. |
-| Still open | Normal power-on after streaming/Art Mode, corrected Smart Hub escape and native Art Mode destinations need definite physical checks. |
-| Other TVs | Web installation target: Tizen 5.0+. See the attributed [device reports](docs/compatibility.md) for tested flows and omissions. Android TV, Google TV, LG webOS and Roku need separate implementations. |
-
-The optional [2020 LS03T profile](scripts/native-home/frame-2020/README.md) supplies experimental owner-configured native source. It leaves the reference helper unchanged and is not an unattended installer.
-
-The detailed [device record](docs/tv-status.md) separates observed results from SDK responses. Native Home/startup uses undocumented, guarded helpers; it is optional and can fail after firmware changes. Keep a recovery baseline before attempting that work. The app can be opened manually without it.
+| This fork's TV | Samsung `UN75DU7200FXZA` (2024 Crystal UHD), Tizen 9, 32‑bit ARM. Install, launch, navigation and the native Home‑button takeover confirmed. |
+| Upstream reference | Samsung The Frame `QA55LS03DAWXXY`, firmware 2130.0, Tizen 9 — see the upstream [device reports](docs/compatibility.md). |
+| Non‑Frame caveats | Art Mode is Frame‑only. Native‑Home settings are model/firmware‑specific; the upstream guard refuses other targets, so the helper needs per‑TV adaptation and an exact‑value recovery baseline. |
+| Other platforms | Android TV, Google TV, LG webOS and Roku need separate implementations. |
 
 ## Develop and check
 
 ```sh
 npm run check
-npm run check:tools
-npx playwright install chromium
 CLEANFRAME_PUBLIC_FONTS=1 npm run check:browser
 npm run check:public
-npm run export:public
 ```
 
-`npm run check`, including its `check:device` command, runs only source checks and synthetic device-adapter tests. It never connects to a TV. The browser checks use isolated Chromium profiles and a loopback preview. They never contact a TV. The public export creates `dist/CleanFrame-public-unsigned.wgt`, with public fonts and notices. It needs your own identity and signing before installation. It does not certify asset redistribution rights or device compatibility.
+The source and browser checks never contact a TV. See [development](docs/development.md) and [testing](docs/testing.md).
 
 | Location | Purpose |
 | --- | --- |
-| `app/` | Current packaged UI and runtime assets |
+| `app/` | Packaged UI and runtime assets |
 | `scripts/` | Preview, validation, asset generation and reference TV tools |
-| [Development](docs/development.md) / [testing](docs/testing.md) | Runtime map, preferences, checks and device boundaries |
-| [Assets](docs/assets.md) / [third-party notices](THIRD_PARTY_NOTICES.md) | Rendering recipes, font separation and asset provenance |
-| [Asset sources](docs/asset-sources.md) | Photo credits and verification of the bundled third-party assets |
-| `.local/`, `dist/` | Ignored private setup, recovery data, generated files and packages |
+| `app/assets/wallpapers/catalog.local.js` | **Git‑ignored** — your own wallpapers load from here, kept out of the public repo |
+| `.local/`, `dist/` | Ignored private setup, certificates, recovery data and generated packages |
+
+## Add your own wallpapers
+
+Drop images in `app/assets/wallpapers/` and register them in a git‑ignored `app/assets/wallpapers/catalog.local.js` (loaded automatically after the public catalog). Your personal collection stays local and is never committed.
 
 ## Contribute
 
-Fork it, experiment and build something that suits your TV. If you find a useful fix or improve the setup instructions, contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before a larger change. Reports should include model, firmware and the observed result, with private identifiers removed.
+Fork it, experiment, and adapt it to your TV. Reports are most useful with model, firmware and the observed result, with private identifiers removed. Read [CONTRIBUTING.md](CONTRIBUTING.md) before a larger change.
 
 ## Licence and credits
 
-CleanFrame's original code and documentation use the [MIT licence](LICENSE). Fonts, photographs and logos retain their own terms; read [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Paid Pangram binaries are excluded from Git and public exports. A local package may include them, so keep personal builds separate from public downloads.
-
-The [release review](docs/public-release.md) records the publication checks. Third-party assets retain the terms listed in their notices. CleanFrame is an independent project with no Samsung or streaming-service affiliation.
-
-[TV Detox](https://github.com/Ansub/tv-detox) is a useful example of making an agent-assisted TV project approachable. Its Android setup is a different implementation; the prompts and instructions here are written for CleanFrame and Tizen.
+Original code and documentation by [nthnclrk/CleanFrame](https://github.com/nthnclrk/CleanFrame) under the [MIT licence](LICENSE); this fork keeps it. Fonts, photographs and logos retain their own terms — see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Extra city/wildlife wallpapers come from **Wikimedia Commons** under CC‑BY / CC‑BY‑SA / CC0 and are credited in [ADDED-CREDITS.md](app/assets/wallpapers/ADDED-CREDITS.md). CleanFrame is an independent project with no Samsung or streaming‑service affiliation.
